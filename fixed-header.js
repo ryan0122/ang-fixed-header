@@ -1,23 +1,23 @@
 'use strict';
 
 angular.module('app')
-    .directive('appFixedHeader',['$timeout', function(timer) {
+    .directive('appFixedHeader', ['$timeout', function (timer) {
 
         return {
             restrict: 'AE',
 
-            link: function (scope, element,attributes) {
+            link: function (scope, element, attributes) {
 
-                var scrollFixOn = function() {
+                var scrollFixOn = function () {
 
                     element.addClass('app-fixed-header');
 
                     var container = $('#main-content'),
                         offset = element.offset().top;
 
-                    if(!scrollWatcher) {
+                    if (!scrollWatcher) {
 
-                        scrollWatcher = function(){
+                        scrollWatcher = function () {
                             if(this.scrollTop > offset) {
                                 container.addClass('fix-header');
                             } else {
@@ -30,11 +30,11 @@ angular.module('app')
 
                 };
 
-                var scrollFixOff = function() {
+                var scrollFixOff = function () {
 
                     var container = $('#main-content');
 
-                    if(scrollWatcher) {
+                    if (scrollWatcher) {
                         container.off('scroll', scrollWatcher)
                     }
 
@@ -44,7 +44,7 @@ angular.module('app')
                     container.removeClass('fix-header');
                 };
 
-                if(attributes.gspFixedHeader) {
+                if (attributes.gspFixedHeader) {
                     scope.$watch(attributes.gspFixedHeader, function(on) {
                         if (on) {
                             timer(scrollFixOn, 500);
